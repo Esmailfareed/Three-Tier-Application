@@ -1,0 +1,32 @@
+# Local dependencies & build artifacts
+node_modules
+build
+dist
+
+# Version control & local config
+.git
+.gitignore
+.env
+.env.local
+.env.development
+.env.testdo
+
+# IDEs & System files
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+
+# Logs & Temporary files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.cache
+
+# Documentation & Docker files
+Dockerfile
+.dockerignore
+README.md
+
+
+

@@ -1,0 +1,38 @@
+
+
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - REACT_APP_BACKEND_URL=http://localhost:8081/api/tasks
+    ports:
+      - "8080:80"
+    environment:
+      - REACT_APP_BACKEND_URL=http://localhost:8081/api/tasks
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - "8081:8080"
+    environment:
+    - MONGO_CONN_STR=mongodb://mongo:27017/todoapp
+    - MONGO_URI=mongodb://mongo:27017/todoapp
+    - DB_URI=mongodb://mongo:27017/todoapp
+    - DB=mongodb://mongo:27017/todoapp
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:7.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data: {}

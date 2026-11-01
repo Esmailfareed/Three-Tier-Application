@@ -1,0 +1,29 @@
+# balloon.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: balloon
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: balloon
+  template:
+    metadata:
+      labels:
+        app: balloon
+    spec:
+      containers:
+      - name: balloon
+        image: registry.k8s.io/pause:3.9
+        resources:
+          requests:
+            cpu: "1500m"     # 1.5 vCPU — tweak to fit your node size
+            memory: "1Gi"
+      # If you want it to also run on the spot group, add:
+      # tolerations:
+      #   - key: "market"
+      #     operator: "Equal"
+      #     value: "spot"
+      #     effect: "NoSchedule"
